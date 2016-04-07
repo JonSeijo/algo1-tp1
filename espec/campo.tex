@@ -1,4 +1,12 @@
 \begin{problema}{crearC}{posG, posC: (\ent, \ent)}{Campo}
+\requiere{posG \neq posC}
+\requiere{posNoNegativas(posG) \land posNoNegativas(posC)}
+\requiere{distancia(posG, (0,0)) \leq 100}
+\requiere{distancia(posG, posC) \leq 100}
+
+\asegura {contenido(c, prm(posG), sgd(posG)) == Granero}
+\asegura {contenido(c, prm(posC), sgd(posC)) == Casa}
+
 \end{problema}
 
 \begin{problema}{dimensionesC}{c: Campo}{(Ancho, Largo))}

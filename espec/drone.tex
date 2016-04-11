@@ -1,23 +1,32 @@
-\begin{problema}{crearD}{i: \ent, ps: [Producto]}{Drone}
-
+\begin{problema}{crearD}{id: \ent, ps: [Producto]}{Drone}
+\asegura{id(\res) == id }
+\asegura{bateriaAlMaximo}{bateria(\res)==100}
+\asegura{productosDisponibles(\res)==ps}
+\asegura{enVuelo(\res) == \false}
 \end{problema}
 
 \begin{problema}{idD}{d: Drone}{\ent}
+\asegura{\res == id(d)}
 \end{problema}
 
 \begin{problema}{bateriaD}{d: Drone}{\ent}
+\asegura{\res == bateria(d)}
 \end{problema}
 
 \begin{problema}{enVueloD}{d: Drone}{\bool}
+\asegura{\res == enVuelo(d)}
 \end{problema}
 
 \begin{problema}{vueloRealizadoD}{d: Drone}{[(\ent, \ent)]}
+\asegura{\res == vueloRealizado(d)}
 \end{problema}
 
 \begin{problema}{posicionActualD}{d: Drone}{(\ent, \ent)}
+\asegura{\res == posicionActual(d)}
 \end{problema}
 
 \begin{problema}{productosDisponiblesD}{d: Drone}{[Producto]}
+\asegura{mismos(\res, productosDisponibles(d))}
 \end{problema}
 
 \begin{problema}{vueloEscaleradoD}{d: Drone}{\bool}

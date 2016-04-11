@@ -42,7 +42,13 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \aux{adyacentesValidasDelGranero}{s : Sistema}{[(\ent, \ent)]}{[\hspace{1mm} x\hspace{1mm}|\hspace{1mm} \selector{x}{adyacentes(prm(posicionGranero(campo(s))), \newline sgd(posicionGranero(campo(s)))),\hspace{1mm} enRango(dimensiones(campo(s)), prm(x), sgd(x) ), noHayDrones(x, s)}]}
 
 
+\aux{noHayDrones}{x : (\ent, \ent), s :Sistema}{Bool}{(\forall \selector{d}{enjambreDrones(s)}) \hspace{1mm} posicionActual(d) \neq x}
+
 \aux{dameCultivos}{s : Sistema}{[Parcela]}{ [\hspace{1mm} (i, j) \hspace{1mm} | \hspace{1mm} \selector{i}{\rangoca{0}{dameAncho(campo(s))}} \hspace{2mm} \selector{j}{\rangoca{0}{dameLargo(campo(s))}},\newline contenido(campo(s), i, j) == Cultivo ]}
 
 
 \aux{dameCultivosListos}{s : Sistema}{[Parcela]}{[\hspace{1mm} c \hspace{1mm} | \hspace{1mm} \selector{c}{dameCultivos(s)} , estadoCultivo(s prm(c), sgd(c)) == ListoParaCosechar \hspace{1mm}]}
+
+
+\aux{porcentajeListas}{s : Sistema}{ Float }{ |dameCultivosListos(s)| \hspace{1mm} / \hspace{1mm} |dameCultivos(s)| }
+

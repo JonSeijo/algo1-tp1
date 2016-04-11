@@ -2,9 +2,12 @@
 \end{problema}
 
 \begin{problema}{campoS}{s: Sistema}{Campo}
+\asegura{\res == campo(s)}
 \end{problema}
 
 \begin{problema}{estadoDelCultivoS}{s: Sistema, i, j: \ent}{EstadoCultivo}
+\requiere{enRango(dimensiones(campo(s)), i, j)}
+\asegura{\res == estadoDelCultivo(s, i, j)}
 \end{problema}
 
 \begin{problema}{enjambreDronesS}{s: Sistema}{[Drone]}
@@ -36,6 +39,7 @@
 \end{problema}
 
 \begin{problema}{listoParaCosecharS}{s: Sistema}{\bool}
+\asegura{\res == (\hspace{1mm} porcentajeListas(s) \geq 0.90 \hspace{1mm})}
 \end{problema}
 
 \begin{problema}{aterrizarYCargarBateriaS}{s: Sistema, b: \ent}{}

@@ -9,7 +9,25 @@
 \subsection{Drone}
 % los aux del tipo drone
 
-\aux{listaSinRepeticiones}{xs: [T]}{[T]}{[ xs[i]\;|\; \selector{i}{[0.. |xs|)}, xs[i] \notin xs[0..i-1] ]}
+\aux{listaSinRepeticiones}{xs: [T]}{[T]}{[\hspace{2mm} xs[i]\hspace{3mm} |\hspace{3mm} \selector{i}{[0.. |xs|)}, xs[i] \notin xs[0..i-1] ]}
+
+%problema (12)
+
+\aux{posicionesPorMomento}{ds : [Drone]}{[[(\ent, \ent)]]}{[\hspace{2mm}listaVertical(d)[i]\hspace{3mm}|\hspace{3mm} \selector{i}{\rangoca{0}{|vueloRealizado(ds[0])|}}]}
+
+
+\aux{listaVertical}{ds : [Drone], i : \ent}{[(\ent, \ent)]}{
+[vueloRealizado(d)[i]\hspace{3mm}|\hspace{3mm} \selector{d}{ds}]}
+
+\aux{listaSinRepetidos}{xs : [T]}{[T]}{[xs[i]\hspace{3mm}|\hspace{3mm}\selector{i}{\rangoca{0}{|xs|}},\hspace{3mm} xs[i] \notin xs\rangoca{0}{i}]}
+
+\aux{crucesEnMomento}{xs : [(\ent, \ent)]}{[((\ent, \ent), \ent)]}{
+[(x, cuenta(x, xs))\hspace{2mm}|\hspace{2mm}\selector{x}{listaSinRepetidos(xs)},cuenta(x, xs) \geq 2]}
+
+\aux{crucesTotales}{xss : [[(\ent, \ent)]]}{[((\ent, \ent), \ent)]}{
+concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \selector{x}{xs}]\hspace{1mm})}
+%(12)
+
 
 
 \subsection{Sistema}

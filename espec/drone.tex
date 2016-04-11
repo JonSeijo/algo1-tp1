@@ -34,11 +34,9 @@
 \asegura{\res \leq enVuelo(d)\newline \land comoMuchoDosVeces(posicionesEnX(vueloRealizado(d)))
 \newline \land estaOrdenada(posicionesEnX(vueloRealizado(d)))\newline \land comoMuchoDosVeces(posicionesEnY(vueloRealizado(d)))\newline \land estaOrdenada(posicionesEnY(vueloRealizado(d)))}
 \end{problema}
-\newline
-\newline
-\newline
-\newline
-\newline
+
+\newpage
+
 \begin{problema}{vuelosCruzadosD}{ds: [Drone]}{[((\ent, \ent), \ent)]}
 \requiere[todosValidos]{(\forall \selector{d}{ds}) enVuelo(d)}
 \requiere{(\forall \selector{i}{\rangoca{0}{|ds|}}) \newline 

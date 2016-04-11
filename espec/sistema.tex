@@ -18,9 +18,21 @@
 \end{problema}
 
 \begin{problema}{seExpandePlagaS}{s: Sistema}{}
+
 \end{problema}
 
 \begin{problema}{despegarS}{s: Sistema, d: Drone}{}
+\requiere{\neg enVuelo(d)}
+\requiere{bateria(d) == 100}
+\requiere{d \in enjambreDrones(s)}
+\requiere{contenido(campo(s), prm(\hspace{1mm}posicionActual(d)), \hspace{1mm}sgd(posicionActual(d))) == Cultivo}
+\requiere{|adyacentesValidasGranero(s)| \geq 1}
+\modifica{s}
+\asegura[mismoCampo]{campo(pre(s)) == campo(s)}
+\asegura[igualCantidaDeDrones]{|enjabreDrones(pre(s))| == |enjambreDrones(s)|}
+\asegura[restoDronesIgual]{(\forall \selector{x}{enjambreDrones(pre(s))}x \neq d)\hspace{3mm} x \in enajmbreDrones(s)}
+\asegura[unDroneCambiado]{( \exists \selector{x}{enjambreDrones(s)})\newline \hspace{16cm} id(x) == id(d)\newline \hspace{16cm}\land bateria(x) == bateria(d) - 1 \newline \hspace{16cm} \land estaEnVuelo(x) \newline \hspace{16cm} \land posicionActual(x) \in adyacentesValidosGranero(s)\newline \hspace{16cm} \land vueloRealizado(x) == [posicionActual(x)] \newline \hspace{16cm} \land mismos(productosDisponibles(x), productosDisponibles(d))}
+\asegura{noCambiaEstadoDeCultivos(s, pre(s))}
 \end{problema}
 
 \begin{problema}{listoParaCosecharS}{s: Sistema}{\bool}

@@ -32,3 +32,11 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 
 \subsection{Sistema}
 % los aux del tipo sistema
+
+
+\aux{noCambiaEstadoDeCultivo}{n, v : Sistema}{Bool}{
+\forall \selector{i}{\rangoca{0}{dameAncho(v)}}, \forall \selector{j}{\rangoca{0}{dameLargo(v)}} \newline 
+\hspace{10cm} contenido(campo(n, i, j)) == Cultivo \newline \hspace{10cm} estadoDelCultivo(v, i, j) == estadoDelCultivo(n, i, j)}
+
+
+\aux{adyacentesValidas}{s : Sistema}{[(\ent, \ent)]}{[\hspace{1mm} x\hspace{1mm}|\hspace{1mm} \selector{x}{adyacentes(prm(posicionGranero(campo(s))), \newline sgd(posicionGranero(campo(s)))),\hspace{1mm} enRango(dimensiones(campo(s)), prm(x), sgd(x) ), noHayDrones(x, s)}]}

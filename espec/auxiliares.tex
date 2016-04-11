@@ -19,6 +19,11 @@
 
 \aux{listaSegundosElementos}{xs : [(T, S)]}{[T]}{[sgd(v) \hspace{3mm} | \hspace{3mm} \selector{v}{xs}]}
 
+\aux{estaOrdenada}{xs : [\ent]}{Bool}{siempreCreciente(xs) \lor siempreDecreciente(xs)}
+
+\aux{siempreCreciente}{xs : [\ent]}{Bool}{(\forall \selector{i}{\rangoca{0}{|xs|-1}})\hspace{1mm} xs[i] \leq xs[i+1]}
+
+\aux{siempreDecreciente}{xs : [\ent]}{Bool}{(\forall \selector{i}{[0.. |xs|-1)})\hspace{1mm} xs[i] \geq xs[i+1]}
 
 \aux{listaVertical}{ds : [Drone], i : \ent}{[(\ent, \ent)]}{
 [vueloRealizado(d)[i]\hspace{3mm}|\hspace{3mm} \selector{d}{ds}]}

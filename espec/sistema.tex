@@ -49,4 +49,10 @@
 \end{problema}
 
 \begin{problema}{volarYSensarS}{s: Sistema, d: Drone}{}
+\requiere {d \in enjambreDrones (s)}
+\requiere {bateria (d) \geq 1}
+\modifica{s}
+\asegura {campo (s) == campo (pre(s))}
+\asegura {|enjambreDrones (pre(s))| == |enjambreDrones(s)|}
+\asegura {(\forall \selector{x}{enjambreDrones (pre(s))} x \neq d )\hspace{1mm} x \in enajmbreDrones (s)}
 \end{problema}

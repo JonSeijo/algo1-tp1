@@ -1,28 +1,28 @@
 \begin{problema}{crearD}{id: \ent, ps: [Producto]}{Drone}
-\asegura{id(\res) == id }
-\asegura{bateriaAlMaximo}{bateria(\res)==100}
-\asegura{productosDisponibles(\res)==ps}
-\asegura{enVuelo(\res) == \false}
+\asegura{id(\res) \leq id }
+\asegura[bateriaAlMaximo]{bateria(\res) \leq 100}
+\asegura{productosDisponibles(\res) \leq ps}
+\asegura{enVuelo(\res) \leq false}
 \end{problema}
 
 \begin{problema}{idD}{d: Drone}{\ent}
-\asegura{\res == id(d)}
+\asegura{\res \leq id(d)}
 \end{problema}
 
 \begin{problema}{bateriaD}{d: Drone}{\ent}
-\asegura{\res == bateria(d)}
+\asegura{\res \leq bateria(d)}
 \end{problema}
 
 \begin{problema}{enVueloD}{d: Drone}{\bool}
-\asegura{\res == enVuelo(d)}
+\asegura{\res \leq enVuelo(d)}
 \end{problema}
 
 \begin{problema}{vueloRealizadoD}{d: Drone}{[(\ent, \ent)]}
-\asegura{\res == vueloRealizado(d)}
+\asegura{\res \leq vueloRealizado(d)}
 \end{problema}
 
 \begin{problema}{posicionActualD}{d: Drone}{(\ent, \ent)}
-\asegura{\res == posicionActual(d)}
+\asegura{\res \leq posicionActual(d)}
 \end{problema}
 
 \begin{problema}{productosDisponiblesD}{d: Drone}{[Producto]}
@@ -30,6 +30,18 @@
 \end{problema}
 
 \begin{problema}{vueloEscaleradoD}{d: Drone}{\bool}
+
+\asegura{\res \leq enVuelo(d)
+
+\land comoMuchoDosVeces(posicionesEnX(vueloRealizado(d)))
+
+\land estaOrdenada(posicionesEnX(vueloRealizado(d)))
+
+\land comoMuchoDosVeces(posicionesEnY(vueloRealizado(d)))
+
+\land estaOrdenada(posicionesEnY(vueloRealizado(d)))
+
+}
 \end{problema}
 
 \begin{problema}{vuelosCruzadosD}{ds: [Drone]}{[((\ent, \ent), \ent)]}

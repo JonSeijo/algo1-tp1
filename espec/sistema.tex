@@ -11,7 +11,6 @@
 \asegura[todosEnGranero]{(\forall \selector{x}{enjambreDrones(res)}) \newline
 \hspace{1mm}contenido(c, prm(posActual(x)), sgd(posActual(x)) == Granero}
 
-
 \end{problema}
 
 % Problema 14
@@ -45,8 +44,19 @@
 
 \end{problema}
 
+\newpage
+
 % Problema 18
 \begin{problema}{seVinoLaMalezaS}{s: Sistema, ps: [(\ent, \ent)]}{}
+\requiere {(\forall \selector{p}{ps})\hspace{1mm}enRango(dimensiones(campo(s)), prm(p), sgd(p))}
+\requiere {(\forall \selector{p}{ps})\hspace{1mm}contenido(campo(s), prm(p), sgd(p) == Cultivo}
+\modifica{s} 
+\asegura{campo(pre(s)) == campo(s)}
+\asegura{mismos(enjambreDrones(pre(s)), enjambreDrones(s))}
+\asegura{(\forall \selector{p}{ps})\hspace{1mm} estadoDelCultivo(s, prm(p), sgd(p)) == ConMaleza}
+\asegura{(\forall\selector{i}{\rangoca{0}{dameAncho(campo(s))}},\selector{j}{\rangoca{0}{dameLargo(campo(s))}}, contenido(campo(pre(s)), i, j) == Cultivo, (i,j) \not\in ps) \newline
+estadoCultivo(pre(s), i ,j) == estadoDelCultivo(s, i, j)}
+
 \end{problema}
 
 % Problema 19

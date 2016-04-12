@@ -60,39 +60,53 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 
 \aux{largoValido}{s : Sistema}{[\ent]}{[j\hspace{1mm}|\hspace{1mm} \selector{j}{\rangoca{0}{dameLargo(campo(s))}}]}
 
+\vspace{3mm}
+
 \aux{listaIds}{ds : [Drone]}{[\ent]}{[id(d)\hspace{1mm}|\hspace{1mm}\selector{d}{ds}]}
+
+\vspace{3mm}
 
 \aux{recibePlaga}{s: Sistema}{[(\ent, \ent)]}{concat[adyacentesValidasCultivos(s, i, j)\hspace{1mm}|\hspace{1mm} \selector{i}{anchoValido(s)}, \newline
 \selector{j}{largoValido(s)}, contenido(campo(s)) == Cultivo, \hspace{1mm}estadoDelCultivo(s,i,j) == ConPlaga)]}
+\vspace{3mm}
 
 \aux{adyacentesValidasCultivos}{s : Sistema, i,j : \ent}{[(\ent, \ent)]}{[v\hspace{1mm}|\hspace{1mm}\selector{v}{adyacentes(i,j)}, enRango(dimensiones(campo(s)), pmr(v), sgd(v)), contenido(campo(s), pmr(v), sgd(v)) == Cultivo]}
+\vspace{3mm}
 
 \aux{adyacentes}{(i,j : \ent)}{[(\ent, \ent)]}{[(i-1,j),(i+1,j),(i,j-1),(i,j+1)]}
+\vspace{3mm}
 
 \aux{noCambiaEstadoDeCultivo}{n, v : Sistema}{Bool}{\forall \selector{i}{\rangoca{0}{dameAncho(v)}}, \forall \selector{j}{\rangoca{0}{dameLargo(v)}} \newline 
 \hspace{10cm} contenido(campo(n, i, j)) == Cultivo \newline \hspace{10cm} estadoDelCultivo(v, i, j) == estadoDelCultivo(n, i, j)}
-
+\vspace{3mm}
 
 \aux{adyacentesValidasDelGranero}{s : Sistema}{[(\ent, \ent)]}{[\hspace{1mm} x\hspace{1mm}|\hspace{1mm} \selector{x}{adyacentes(prm(posicionGranero(campo(s))), \newline sgd(posicionGranero(campo(s)))),\hspace{1mm} enRango(dimensiones(campo(s)), prm(x), sgd(x) ), noHayDrones(x, s)}]}
+\vspace{3mm}
 
 
 \aux{noHayDrones}{x : (\ent, \ent), s :Sistema}{Bool}{(\forall \selector{d}{enjambreDrones(s)}) \hspace{1mm} posicionActual(d) \neq x}
+\vspace{3mm}
 
 \aux{dameCultivos}{s : Sistema}{[Parcela]}{ [\hspace{1mm} (i, j) \hspace{1mm} | \hspace{1mm} \selector{i}{\rangoca{0}{dameAncho(campo(s))}} \hspace{2mm} \selector{j}{\rangoca{0}{dameLargo(campo(s))}},\newline contenido(campo(s), i, j) == Cultivo ]}
+\vspace{3mm}
 
 
 \aux{dameCultivosListos}{s : Sistema}{[Parcela]}{[\hspace{1mm} c \hspace{1mm} | \hspace{1mm} \selector{c}{dameCultivos(s)} , estadoDelCultivo(s, prm(c), sgd(c)) == ListoParaCosechar \hspace{1mm}]}
+\vspace{3mm}
 
 
 \aux{porcentajeCultivosListos}{s : Sistema}{ Float }{ |dameCultivosListos(s)| \hspace{1mm} / \hspace{1mm} |dameCultivos(s)| }
-
+\vspace{3mm}
 
 % Auxiliares problema 23
 \aux{cantidadDeMovimientos}{d: Drone, s : Sistema}{\ent}{minimoTres(cantidadFertilizante(d), bateria(d),\newline \hspace{1mm}distanciaHastaObstaculoOMargen(d, s))}
+\vspace{3mm}
 
 \aux{minimoTres}{a,b,c : \ent}{\ent}{minimoDos(minimoDos(a, b), c)}
 
 \aux{minimoDos}{a,b : \ent}{\ent}{\IfThenElse{a \leq b}{a}{b}}
+
+\vspace{3mm}
 
 \aux{cantidadFertilizante}{d : Drone}{\ent}{|[x\hspace{1mm}|\hspace{1mm} \selector{x}{productosDisponibles(d)}, x == Fertilizante]|}
 
@@ -101,8 +115,17 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 %\hspace{1mm} then(prm(obstaculoDelante[|obstaculoDelante|-1]) - prm(posicionActual(d)))\newline
 %\hspace{1mm} else(prm(posicionActual(d) - 0))}
 
+\vspace{5mm}
+
 \aux{obstaculoEnFilaAIzquierda}{d : Drone, s : Sistema}{Bool}{(\exists \selector{i}{\rangoca{0}{prm(posicionActual(d))}})\newline
 \hspace{1mm} contenido(campo(s), i, sgd(posicionActual(d))) \neq Cultivo}
+
+\vspace{5mm}
+
+\aux{obstaculosDelante}{d : Drone, s : Sistema}{[(\ent, \ent)]}{[(i, sgd(posicionActual(d))\hspace{1mm}|\hspace{1mm}\selector{i}{\rangoca{0}{prm(posicionActual(d))}}, \newline
+\hspace{1mm} contenido(campo(s), i, sgd(posicionActual(d))) \neq Cultivo]}
+
+\vspace{5mm}
 
 %aux del 24
 \aux{sinCensar}{s: Sistema, sis: Sistema, d: Drone}{\bool}{(\exists \selector{x} enjambreDrones(s)) id(x) == id(d)  \land \newline contenido(campo(s), prm(posicionActual(x)), sgd(posicionActual(x))) == Cultivo \land \newline estadoCultivo(sis), prm(posicionActual(x)), sgd(posActual(x)) == NoCensado }

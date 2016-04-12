@@ -21,7 +21,7 @@
 
 \aux{posicionesEnX}{xs : [(T, S)]}{[T]}{listaPrimerosElementos(xs)}
 
-\aux{posicionesEnY}{xs : [(T, S)]}{[S]}{listaSegundosElementos(xs)}
+\aux{posicionesEnY}{xs : [(T, S)]}{[T]}{listaSegundosElementos(xs)}
 
 \aux{estaOrdenada}{xs : [\ent]}{Bool}{siempreCreciente(xs) \lor siempreDecreciente(xs)}
 
@@ -86,3 +86,10 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 
 \aux{porcentajeCultivosListos}{s : Sistema}{ Float }{ |dameCultivosListos(s)| \hspace{1mm} / \hspace{1mm} |dameCultivos(s)| }
 
+
+% Auxiliares problema 23
+\aux{cantidadDeMovimientos}{d: Drone, s : Sistema}{\ent}{minimoTres(cantidadFertilizante(d), bateria(d), distanciaHastaObstaculo(d, s))}
+
+\aux{minimoTres}{a,b,c : \ent}{\ent}{minimoDos(minimoDos(a, b), c)}
+
+\aux{minimoDos}{a,b : \ent}{\ent}{\IfThenElse{a \leq b}{a}{b}}

@@ -141,4 +141,15 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \aux{tieneAlgunPlaguicida}{x: Drone}{\bool}{(\exists \selector{p} productosDisponibles(x))\hspace{1mm} p == Plaguicida \lor \newline p == PlaguicidaBajoConsumo}
 
 \aux{tienePlaguicidaBajoConsumo}{x: Drone}{\bool}{(\exists \selector{p} productosDisponibles(x)) \hspace{1mm}p == PlaguicidaBajoConsumo}
+
+
+\aux{esHerbicida}{p: Producto}{\bool}{(p == Herbicida)\hspace{1mm} \lor \hspace{1mm} (p==HerbicidaLargoAlcance)}
+
+\aux{esPlaguicida}{p: Producto}{\bool}{(p == Plaguicida) \hspace{1mm} \lor \hspace{1mm} (p == PlaguicidaBajoConsumo)}
+
+\aux{gastoBateria}{p: Producto}{\ent}{\IfThenElse {(p == Plaguicida)}{10}{5}}
+
+\aux{posicionesHerbizar}{p: Producto, pos: (\ent,\ent), s: Sistema}{[(\ent,\ent)]}{\IfThenElse {(p == Herbicida)}{([pos])}\newline{adyacentesValidasAHerbizar(pos,s)}}
+
+\aux{adyacentesValidasAHerbizar}{pos: (\ent , \ent ), s: Sistema}{[(\ent , \ent)]}{[pos] ++ [v\hspace{1mm}|\hspace{1mm} \selector{v} adyacentes(prm(pos),sgd(pos)),\newline enRango(campo(s), prm(pos), sgd(pos)),  (contenido(campo(s), prm(pos), sgd(pos)) == cultivo), \newline (estadoCultivo(s, prm(pos), sgd(pos)) == ConMaleza)}
 %>>>>>>> bebaffbeee2705a801e37e1b838263ad5f5a7350

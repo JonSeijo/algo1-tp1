@@ -61,6 +61,13 @@ estadoDelCultivo(pre(s), i ,j) == estadoDelCultivo(s, i, j)}
 
 % Problema 19
 \begin{problema}{seExpandePlagaS}{s: Sistema}{}
+\modifica{s}
+\asegura{campo(pre(s)) == campo(s)}
+\asegura{mismos(enjambreDrones(pre(s)), enjambreDrones(s))}
+
+\asegura{(\forall\selector{i}{\rangoca{0}{dameAncho(campo(s))}}, \selector{j}{\rangoca{0}{dameLargo(campo(s))}}, contenido(campo(pre(s)), i, j == Cultivo)\newline
+(((i,j)\in recibenPlaga(pre(s)) ) \implica \hspace{1mm}estadoDelCultivo(pre(s), i, j) == ConPlaga)\newline
+\land \hspace{1mm} (((i, j) \not\in recibenPlaga(pre(s)))\implica \hspace{1mm}estadoDelCultivo(pre(s), i, j) == estadoDelCultivo(s,i,j)) }
 
 \end{problema}
 

@@ -9,15 +9,19 @@
 \subsection{Drone}
 % los aux del tipo drone
 
-\aux{listaSinRepeticiones}{xs: [T]}{[T]}{[\hspace{2mm} xs[i]\hspace{3mm} |\hspace{3mm} \selector{i}{[0.. |xs|)}, xs[i] \notin xs[0..i-1] ]}
+% NOTA(Jonathan): HAY PROBLEMAS QUE SE USAN EN 12 QUE ESTAN EN LA SECCION 11. ESTO ESTA BIEN PUES SE USAN EN AMBOS.
+% HABRIA QUE DEJAR EN ESTA SECCION LAS AUXILIARES QUE USAMOS EN VARIOS
+% LOS ESPECIFICOS DE PROBLEMAS DEJEMOSLOS EN SUS RESPECTIVOS PROBLEMAS.
 
-%problema (12)
-
-\aux{posicionesPorMomento}{ds : [Drone]}{[[(\ent, \ent)]]}{[\hspace{2mm}listaVertical(d)[i]\hspace{3mm}|\hspace{3mm} \selector{i}{\rangoca{0}{|vueloRealizado(ds[0])|}}]}
+% Problema 11
 
 \aux{listaPrimerosElementos}{xs : [(T, S)]}{[T]}{[prm(v) \hspace{3mm} | \hspace{3mm} \selector{v}{xs}]}
 
 \aux{listaSegundosElementos}{xs : [(T, S)]}{[T]}{[sgd(v) \hspace{3mm} | \hspace{3mm} \selector{v}{xs}]}
+
+\aux{posicionesEnX}{xs : [(T, S)]}{[T]}{listaPrimerosElementos(xs)}
+
+\aux{posicionesEnY}{xs : [(T, S)]}{[T]}{listaSegundosElementos(xs)}
 
 \aux{estaOrdenada}{xs : [\ent]}{Bool}{siempreCreciente(xs) \lor siempreDecreciente(xs)}
 
@@ -25,16 +29,27 @@
 
 \aux{siempreDecreciente}{xs : [\ent]}{Bool}{(\forall \selector{i}{[0.. |xs|-1)})\hspace{1mm} xs[i] \geq xs[i+1]}
 
-\aux{listaVertical}{ds : [Drone], i : \ent}{[(\ent, \ent)]}{
-[vueloRealizado(d)[i]\hspace{3mm}|\hspace{3mm} \selector{d}{ds}]}
+\aux{comoMuchoDosVeces}{xs : [\ent]}{Bool}{(\forall \selector{x}{xs})\hspace{1mm}cuenta(x, xs)\hspace{1mm}\leq \hspace{1mm}2}
 
-\aux{listaSinRepetidos}{xs : [T]}{[T]}{[xs[i]\hspace{3mm}|\hspace{3mm}\selector{i}{\rangoca{0}{|xs|}},\hspace{3mm} xs[i] \notin xs\rangoca{0}{i}]}
-
-\aux{crucesEnMomento}{xs : [(\ent, \ent)]}{[((\ent, \ent), \ent)]}{
-[(x, cuenta(x, xs))\hspace{2mm}|\hspace{2mm}\selector{x}{listaSinRepetidos(xs)},cuenta(x, xs) \geq 2]}
+% Problema 12
 
 \aux{crucesTotales}{xss : [[(\ent, \ent)]]}{[((\ent, \ent), \ent)]}{
 concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \selector{x}{xs}]\hspace{1mm})}
+
+\aux{crucesEnMomento}{xs : [(\ent, \ent)]}{[((\ent, \ent), \ent)]}{
+[(x, cuenta(x, xs))\hspace{2mm}|\hspace{2mm}\selector{x}{listaSinRepeticiones(xs)},cuenta(x, xs) \geq 2]}
+
+\aux{listaSinRepeticiones}{xs: [T]}{[T]}{[\hspace{2mm} xs[i]\hspace{3mm} |\hspace{3mm} \selector{i}{[0.. |xs|)}, xs[i] \notin xs[0..i-1] ]}
+
+\aux{posicionesPorMomento}{ds : [Drone]}{[[(\ent, \ent)]]}{[\hspace{2mm}listaVertical(d)[i]\hspace{3mm}|\hspace{3mm} \selector{i}{\rangoca{0}{|vueloRealizado(ds[0])|}}]}
+
+\aux{listaVertical}{ds : [Drone], i : \ent}{[(\ent, \ent)]}{
+[vueloRealizado(d)[i]\hspace{3mm}|\hspace{3mm} \selector{d}{ds}]}
+
+
+
+\aux{listaSinRepeticiones}{xs : [T]}{[T]}{[xs[i]\hspace{3mm}|\hspace{3mm}\selector{i}{\rangoca{0}{|xs|}},\hspace{3mm} xs[i] \notin xs\rangoca{0}{i}]}
+
 %(12)
 
 

@@ -1,3 +1,4 @@
+% Problema 4
 \begin{problema}{crearD}{id: \ent, ps: [Producto]}{Drone}
 \asegura{id(\res) == id }
 \asegura[bateriaAlMaximo]{bateria(\res) == 100}
@@ -5,30 +6,37 @@
 \asegura{enVuelo(\res) == false}
 \end{problema}
 
+% Problema 5
 \begin{problema}{idD}{d: Drone}{\ent}
 \asegura{\res == id(d)}
 \end{problema}
 
+% Problema 6
 \begin{problema}{bateriaD}{d: Drone}{\ent}
 \asegura{\res == bateria(d)}
 \end{problema}
 
+% Problema 7
 \begin{problema}{enVueloD}{d: Drone}{\bool}
 \asegura{\res == enVuelo(d)}
 \end{problema}
 
+% Problema 8
 \begin{problema}{vueloRealizadoD}{d: Drone}{[(\ent, \ent)]}
 \asegura{\res == vueloRealizado(d)}
 \end{problema}
 
+% Problema 9
 \begin{problema}{posicionActualD}{d: Drone}{(\ent, \ent)}
 \asegura{\res == posicionActual(d)}
 \end{problema}
 
+% Problema 10
 \begin{problema}{productosDisponiblesD}{d: Drone}{[Producto]}
 \asegura{mismos(\res, productosDisponibles(d))}
 \end{problema}
 
+% Problema 11
 \begin{problema}{vueloEscaleradoD}{d: Drone}{\bool}
 
 \asegura{\res == enVuelo(d)\newline \land comoMuchoDosVeces(posicionesEnX(vueloRealizado(d)))
@@ -37,10 +45,11 @@
 
 \newpage
 
+% Problema 12
 \begin{problema}{vuelosCruzadosD}{ds: [Drone]}{[((\ent, \ent), \ent)]}
 \requiere[todosValidos]{(\forall \selector{d}{ds}) enVuelo(d)}
 \requiere{(\forall \selector{i}{\rangoca{0}{|ds|}}) \newline 
 |vueloRealizado(ds[0])| ==  | vueloRealizado(ds[i]) |}
 \asegura{mismos(\res, crucesTotales(posicionesPorMomentos(ds)))}
-\asegura{estaOrenada(listSegundosElementos(\res))}
+\asegura{estaOrdenada(listSegundosElementos(\res))}
 \end{problema}

@@ -110,22 +110,27 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 
 \aux{cantidadFertilizante}{d : Drone}{\ent}{|[x\hspace{1mm}|\hspace{1mm} \selector{x}{productosDisponibles(d)}, x == Fertilizante]|}
 
-%NOTA: ESTA AUXILIAR NO COMPILA PERO NO ENCUENTRO POR QUE
-%\aux{distanciaHastaObstaculoOMargen}{d : Drone, s : Sistema}{\int}{if(obstaculoEnFilaAIzquierda(d, s))\newline
-%\hspace{1mm} then(prm(obstaculoDelante[|obstaculoDelante|-1]) - prm(posicionActual(d)))\newline
-%\hspace{1mm} else(prm(posicionActual(d) - 0))}
 
-\vspace{5mm}
+\aux{distanciaHastaObstaculoOMargen}{d : Drone, s : Sistema}{\ent}{if(obstaculoEnFilaAIzquierda(d, s))\newline
+\hspace{1mm} then(prm(obstaculoDelante(d, s)[|obstaculoDelante|-1]) - prm(posicionActual(d)))\newline
+\hspace{1mm} else(prm(posicionActual(d) - 0))}
+
+\vspace{3mm}
+
+%aux ultimo elemento
 
 \aux{obstaculoEnFilaAIzquierda}{d : Drone, s : Sistema}{Bool}{(\exists \selector{i}{\rangoca{0}{prm(posicionActual(d))}})\newline
 \hspace{1mm} contenido(campo(s), i, sgd(posicionActual(d))) \neq Cultivo}
+\vspace{3mm}
 
-\vspace{5mm}
-
-\aux{obstaculosDelante}{d : Drone, s : Sistema}{[(\ent, \ent)]}{[(i, sgd(posicionActual(d))\hspace{1mm}|\hspace{1mm}\selector{i}{\rangoca{0}{prm(posicionActual(d))}}, \newline
+\aux{obstaculosDelante}{d : Drone, s : Sistema}{[(\ent, \ent)]}{[(i, sgd(posicionActual(d))\hspace{1mm}|\hspace{1mm} \selector{i}{\rangoca{0}{prm(posicionActual(d))}}, \newline
 \hspace{1mm} contenido(campo(s), i, sgd(posicionActual(d))) \neq Cultivo]}
+\vspace{3mm}
 
-\vspace{5mm}
+
+\aux{posicionAfter}{d : Drone}{(\ent , \ent)}{(prm(posicionActual(d))) - CantidadDeMovimientos(d), sgd(posicionActual(d))}
+\vspace{3mm}
 
 %aux del 24
-\aux{sinCensar}{s: Sistema, sis: Sistema, d: Drone}{\bool}{(\exists \selector{x} enjambreDrones(s))\hspace{1mm} id(x) == id(d)  \land \newline contenido(campo(s), prm(posicionActual(x)), sgd(posicionActual(x))) == Cultivo \land \newline estadoCultivo(sis), prm(posicionActual(x)), sgd(posActual(x)) == NoCensado }
+\aux{sinCensar}{s: Sistema, sis: Sistema, d: Drone}{\bool}{(\exists \selector{x} enjambreDrones(s)) id(x) == id(d)  \land \newline contenido(campo(s), prm(posicionActual(x)), sgd(posicionActual(x))) == Cultivo \land \newline estadoCultivo(sis), prm(posicionActual(x)), sgd(posActual(x)) == NoCensado }
+

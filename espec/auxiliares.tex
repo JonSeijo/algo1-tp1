@@ -52,10 +52,16 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \subsection{Sistema}
 % los aux del tipo sistema
 
+%\aux{anchoValido}{s : Sistema}{[i\hspace{1mm}|\hspace{1mm} \selector{i}{\rangoca{0}{dameAncho(campo(s))}}]}
+
+%\aux{largoValido}{s : Sistema}{[j\hspace{1mm}|\hspace{1mm} \selector{j}{\rangoca{0}{dameLargo(campo(s))}}]}
+
 \aux{listaIds}{ds : [Drone]}{[\ent]}{[id(d)\hspace{1mm}|\hspace{1mm}\selector{d}{ds}]}
 
-\aux{noCambiaEstadoDeCultivo}{n, v : Sistema}{Bool}{
-\forall \selector{i}{\rangoca{0}{dameAncho(v)}}, \forall \selector{j}{\rangoca{0}{dameLargo(v)}} \newline 
+\aux{recibePlaga}{s: Sistema}{[(\ent, \ent)]}{concat[adyacentesValidasCultivos(s, i, j)\hspace{1mm}|\hspace{1mm} \selector{i}{anchoValido(s)}, \newline
+\selector{j}{largoValido(s)}, contenido(campo(s)) == Cultivo, \hspace{1mm}estadoDelCultivo(s,i,j) == ConPlaga)]}
+
+\aux{noCambiaEstadoDeCultivo}{n, v : Sistema}{Bool}{\forall \selector{i}{\rangoca{0}{dameAncho(v)}}, \forall \selector{j}{\rangoca{0}{dameLargo(v)}} \newline 
 \hspace{10cm} contenido(campo(n, i, j)) == Cultivo \newline \hspace{10cm} estadoDelCultivo(v, i, j) == estadoDelCultivo(n, i, j)}
 
 

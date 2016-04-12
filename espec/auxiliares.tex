@@ -155,13 +155,13 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 %>>>>>>> bebaffbeee2705a801e37e1b838263ad5f5a7350
 
 
-\aux{quiereHerbizar}{s : Sistema, x, d : Drone}{Bool}{siLlegoAMaleza(x, s) \newline \land tieneAlgunHerbicida(d) \land bateria(d) \geq 6}
+\aux{quiereHerbizar}{s : Sistema, x, d : Drone}{Bool}{llegoAMaleza(x, s) \newline \land tieneAlgunHerbicida(d) \land bateria(d) \geq 6}
 
 
-\aux{quierePlaguizar}{s : Sistema, x, d : Drone}{Bool}{siLlegoAPlaga(x, s) \newline \land tieneAlgunPlaguicida(d) \land bateria(d) \geq 11}
+\aux{quierePlaguizar}{s : Sistema, x, d : Drone}{Bool}{llegoAPlaga(x, s) \newline \land tieneAlgunPlaguicida(d) \land bateria(d) \geq 11}
 
 
-\aux{quierePlaguizarBajoConsumo}{s : Sistema, x, d : Drone}{Bool}{siLlegoAPlaga(x, s) \newline \land tieneAlgunPlaguicidaBajoConsumo(d) \land 6 \leq  bateria(d) \leq 10}
+\aux{quierePlaguizarBajoConsumo}{s : Sistema, x, d : Drone}{Bool}{llegoAPlaga(x, s) \newline \land tieneAlgunPlaguicidaBajoConsumo(d) \land 6 \leq  bateria(d) \leq 10}
 
 
 \aux{llegoAMaleza}{x: Drone, s: Sistema}{\bool}{\IfThenElse {((contenido(campo(s)),

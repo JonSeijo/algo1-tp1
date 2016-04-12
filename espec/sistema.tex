@@ -2,7 +2,7 @@
 \begin{problema}{crearS}{c: Campo, ds: [Drone]}{Sistema}
 \requiere{sinRepetidos(listaIds(ds))}
 \asegura {c == campo(res)}
-\asegura[todoCultivoEstaNoCensado]{(\forall \selector{i}{\rangoca{0}{dameAncho(c)}} \hspace{1mm} \selector{j}{\rangoca{0}{dameLargo(c)}})\hspace{1mm}((contenido(c, i, j) == Cultivo) \implica (estadoDelCultivo(\res, i, j) == NoCensado))  )}
+\asegura[todoCultivoEstaNoCensado]{(\forall \selector{i}{\rangoca{0}{dameAncho(c)}} \hspace{1mm}, \selector{j}{\rangoca{0}{dameLargo(c)}})\hspace{1mm}((contenido(c, i, j) == Cultivo) \implica (estadoDelCultivo(\res, i, j) == NoCensado))  )}
 \asegura{|ds| == |enjambreDrones(res)|}
 \asegura{(\forall \selector{d}{ds}) \hspace{1mm} id(d) \in listaIds(enjambreDrones(res)) )}
 \asegura{(\forall \selector{x}{enjambreDrones(res)}) \hspace{1mm}bateria(x) == 100}
@@ -40,7 +40,7 @@
 \asegura{(\forall\selector{i}{\rangoca{0}{dameAncho(campo(s))}},\selector{j}{\rangoca{0}{dameLargo(campo(s))}}, contenido(campo(pre(s)), i, j) == Cultivo)\newline
 ((estadoDelCultivo(pre(s),i,j) == RecienSembrado) \implica (estadoDelCultivo(s, i, j) == EnCrecimiento))\newline
 \land ((estadoDelCultivo(pre(s),i,j) == EnCrecimiento) \implica (estadoDelCultivo(s, i, j) == ListoParaCosechar))\newline
-\land ((estadoDelCultivo(pre(s), i, j) \neq RecienSembrado\hspace{1mm} \land \hspace{1mm} estadoDelCultivo(pre(s), i, j)  \neq EnCrecimiento) \newline \implica estadoDelCultivo(pre(s), i, j) == estadoDelCultivo(s, i, j))}
+\land ((estadoDelCultivo(pre(s), i, j) \neq RecienSembrado\hspace{1mm} \land \hspace{1mm} estadoDelCultivo(pre(s), i, j)  \neq EnCrecimiento) \newline \implica (estadoDelCultivo(pre(s), i, j) == estadoDelCultivo(s, i, j)))}
 
 \end{problema}
 
@@ -66,8 +66,8 @@ estadoDelCultivo(pre(s), i ,j) == estadoDelCultivo(s, i, j)}
 \asegura{mismos(enjambreDrones(pre(s)), enjambreDrones(s))}
 
 \asegura{(\forall\selector{i}{\rangoca{0}{dameAncho(campo(s))}}, \selector{j}{\rangoca{0}{dameLargo(campo(s))}}, contenido(campo(pre(s)), i, j == Cultivo)\newline
-(((i,j)\in recibenPlaga(pre(s)) ) \implica \hspace{1mm}estadoDelCultivo(pre(s), i, j) == ConPlaga)\newline
-\land \hspace{1mm} (((i, j) \not\in recibenPlaga(pre(s)))\implica \hspace{1mm}estadoDelCultivo(pre(s), i, j) == estadoDelCultivo(s,i,j)) }
+(((i,j)\in recibenPlaga(pre(s)) ) \implica \hspace{1mm}(estadoDelCultivo(pre(s), i, j) == ConPlaga))\newline
+\land \hspace{1mm} (((i, j) \not\in recibenPlaga(pre(s)))\implica \hspace{1mm}(estadoDelCultivo(pre(s), i, j) == estadoDelCultivo(s,i,j))) }
 
 \end{problema}
 

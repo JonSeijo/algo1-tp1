@@ -96,6 +96,25 @@ estadoDelCultivo(pre(s), i ,j) == estadoDelCultivo(s, i, j)}
 % Problema 22
 \begin{problema}{aterrizarYCargarBateriaS}{s: Sistema, b: \ent}{}
 % NOTA(Jonathan)LO ESTOY COPIANDO NO ESCRIBAN ACA ASI NO COLISIONAMOS
+% ¿Quiza puede recibir un entero mayor a 100?
+\requiere{0 \leq b \leq 100}
+
+\modifica{s}
+
+\asegura{campo(pre(s)) == campo(s)}
+\asegura{noCambiaEstadosDeCuultivos(s, pre(s))}
+
+\asegura{|enjambreDrones(pre(s))| == |enjambreDrones(s)|}
+\asegura[cambianLosDeBateriaBaja]{(\forall \selector{d}{enjambreDrones(pre(s))}, bateria(d) \leq b)(\exists x \in enjambreDrones(s))\newline
+id(d) == id(x)\newline
+\land \hspace{1mm}(posicionActual(x) == posicionGranero(campo(s)))\newline
+\land \hspace{1mm}(|vuelosRealizados(s)| == 0)\newline
+\land \hspace{1mm}(bateria(x) == 100)\newline
+\land \hspace{1mm}(\neg enVuelo(x))\newline
+\land \hspace{1mm}(mismos(productosDisponibles(x), productosDisponibles(d)))}
+
+\asegura[elRestoQuedaIgual]{(\forall \selector{d}{enjambreDrones(pre(s))}, bateria(d) > b)\hspace{1mm} d \in enjambreDrones(s))}
+
 \end{problema}
 
 % Problema 23

@@ -76,19 +76,21 @@ estadoDelCultivo(pre(s), i ,j) == estadoDelCultivo(s, i, j)}
 \requiere{\neg enVuelo(d)}
 \requiere{bateria(d) == 100}
 \requiere{d \in enjambreDrones(s)}
-\requiere{contenido(campo(s), prm(\hspace{1mm}posicionActual(d)), \hspace{1mm}sgd(posicionActual(d))) == Cultivo}
+\requiere[droneEnGranero]{contenido(campo(s), prm(\hspace{1mm}posicionActual(d)), \hspace{1mm}sgd(posicionActual(d))) == Granero}
 \requiere{|adyacentesValidasGranero(s)| \geq 1}
+
 \modifica{s}
+
 \asegura[mismoCampo]{campo(pre(s)) == campo(s)}
 \asegura[igualCantidaDeDrones]{|enjabreDrones(pre(s))| == |enjambreDrones(s)|}
-\asegura[restoDronesIgual]{(\forall \selector{x}{enjambreDrones(pre(s))}x \neq d)\hspace{3mm} x \in enajmbreDrones(s)}
+\asegura[restoDronesIgual]{(\forall \selector{x}{enjambreDrones(pre(s))},\hspace{1mm}x \neq d)\hspace{3mm} x \in enajmbreDrones(s)}
 \asegura[unDroneCambiado]{( \exists \selector{x}{enjambreDrones(s)})\newline \hspace{16cm} id(x) == id(d)\newline \hspace{16cm}\land bateria(x) == bateria(d) - 1 \newline \hspace{16cm} \land estaEnVuelo(x) \newline \hspace{16cm} \land posicionActual(x) \in adyacentesValidosGranero(s)\newline \hspace{16cm} \land vueloRealizado(x) == [posicionActual(x)] \newline \hspace{16cm} \land mismos(productosDisponibles(x), productosDisponibles(d))}
 \asegura{noCambiaEstadoDeCultivos(s, pre(s))}
 \end{problema}
 
 % Problema 21
 \begin{problema}{listoParaCosecharS}{s: Sistema}{\bool}
-\asegura{\res == (\hspace{1mm} porcentajeListas(s) \geq 0.90 \hspace{1mm})}
+\asegura{\res == (\hspace{1mm} porcentajeCultivosListos(s) \geq 0.90 \hspace{1mm})}
 \end{problema}
 
 % Problema 22

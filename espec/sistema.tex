@@ -138,18 +138,19 @@ id(x) == id(d)\newline
 \land \hspace{1mm} posicionActual(d) == posicionAfter(x)\newline
 \land \hspace{1mm} vuelosRealizados(d) == vuelosAfter(x)\newline
 \land \hspace{1mm} bateria(d) == bateriaAfter(x)\newline
+IMPORTANTE FALTO HACER PRODUCTOSAFTER() Y ME TUVE QUE IR
 \land \hspace{1mm} mismos(productosDisponibles(d), productosAfter(x))\newline
 \land \hspace{1mm} enVuelo(d)\newline
 \land \hspace{1mm} (\forall \selector{i}{anchoRecorrido(posicionAfter(x), posicionActual(x))},\newline
-\hspace{2cm} estadoRecienSembradoOEnCrecimiento(campo(pre(s)), i, sgd(posicionActul(x))) \newline
+\hspace{2cm} estadoRecienSembradoOEnCrecimiento(pre(s), i, sgd(posicionActul(x))) \newline
 \hspace{2cm} estadoDelCultivo(campo(s), i, sgd(posicionActual(x)) == ListoParaCosechar \newline
 \land \hspace{1mm} (\forall \selector{i}{anchoRecorrido(posicionAfter(x), posicionActual(x))},\newline
-\hspace{2cm} estadoRecienSembradoOEnCrecimiento(campo(pre(s)), i, sgd(posicionActul(x))) \newline
+\hspace{2cm} estadoRecienSembradoOEnCrecimiento(pre(s), i, sgd(posicionActul(x))) \newline
 \hspace{2cm}estadoDelCultivo(campo(pre(s)), i, sgd(posicionActual(x))\newline
 \hspace{1mm} == estadoDelCultivo(campo(s), i, sgd(posicionActual(x))}
 
 
-\asegura[filasSinDronesQuedanIgual]{(\forall \selector{i}{\rangoca{0}{dameAncho(campo(s))}, \selector{j}{filasSinDrones(pre(s))},\newline
+\asegura[filasSinDronesQuedanIgual]{(\forall \selector{i}{\rangoca{0}{dameAncho(campo(s))}, \selector{j}{filasSinDronesVolando(pre(s))},\newline
 contenido(campo(pre(s)),i,j) == Cultivo) \newline
 estadoDelCultivo(pre(s), i, j) == estadoDelCultivo(s, i, j)}}
 

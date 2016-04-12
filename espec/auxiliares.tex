@@ -96,22 +96,10 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 
 \aux{cantidadFertilizante}{d : Drone}{\ent}{|[x\hspace{1mm}|\hspace{1mm} \selector{x}{productosDisponibles(d)}, x == Fertilizante]|}
 
-\aux{distanciaHastaObstaculoOMargen}{d : Drone, s : Sistema}{\int}{if(obstaculoEnFilaAIzquierda(d, s))\newline
-then(prm(obstaculoDelante[|obstaculoDelante|-1]) - prm(posicionActual(d)))\newline
-else(prm(posicionActual(d)-0))
+%\aux{distanciaHastaObstaculoOMargen}{d : Drone, s : Sistema}{\int}{if(obstaculoEnFilaAIzquierda(d, s))\newline
+%\hspace{1mm}then(prm(obstaculoDelante[|obstaculoDelante|-1]) - prm(posicionActual(d)))\newline
+%\hspace{1mm}else(prm(posicionActual(d)-0))}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+%aux del 24
+\aux{sinCensar}{s: Sistema, sis: Sistema, d: Drone}{\bool}{(\exists \selector{x} enjambreDrones(s)) id(x) == id(d)  \land \newline contenido(campo(s), prm(posicionActual(x)), sgd(posicionActual(x))) == Cultivo \land \newline estadoCultivo(sis), prm(posicionActual(x)), sgd(posActual(x)) == NoCensado }
 

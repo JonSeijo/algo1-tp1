@@ -1,5 +1,17 @@
 % Problema 13
 \begin{problema}{crearS}{c: Campo, ds: [Drone]}{Sistema}
+\requiere{sinRepetidos(listaIds(ds))}
+\asegura {c == campo(res)}
+\asegura[todoCultivoEstaNoCensado]{(\forall \selector{i}{\rangoca{0}{dameAncho(c)}} \hspace{1mm} \selector{j}{\rangoca{0}{dameLargo(c)}})\hspace{1mm}((contenido(c, i, j) == Cultivo) \implica (estadoCultivo(\res, i, j) == NoCensado))  )}
+\asegura{|ds| == |enjambreDrones(res)|}
+\asegura{(\forall \selector{d}{ds}) \hspace{1mm} id(d) \in listaIds(enjambreDrones(res)) )}
+\asegura{(\forall \selector{x}{enjambreDrones(res)}) \hspace{1mm}bateria(x) == 100}
+\asegura{(\forall \selector{x}{enjambreDrones(res)}) \hspace{1mm}enVuelo(x) == False}
+\asegura[productosNoCambiaron]{(\forall \selector{x}{enjambreDrones(res)}, \selector{d}{ds}, id(x) == id(d))\newline mismos(productosDisponibles(x), productosDisponibles(d))}
+\asegura[todosEnGranero]{(\forall \selector{x}{enjambreDrones(res)}) \newline
+\hspace{1mm}contenido(c, prm(posActual(x)), sgd(posActual(x)) == Granero}
+
+
 \end{problema}
 
 % Problema 14

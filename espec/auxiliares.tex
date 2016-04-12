@@ -95,4 +95,4 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \aux{minimoDos}{a,b : \ent}{\ent}{\IfThenElse{a \leq b}{a}{b}}
 
 %aux del 24
-\aux{sinCensar}{s: Sistema, sis: Sistema, d: Drone}{\bool}{($\exists$ \selector{x} enjambreDrones(s)) id(x) == id(d)  \land \newline contenido(campo(s), prm(posicionActual(x)), sgd(posicionActual(x))) == Cultivo \land \newline estadoCultivo(sis), prm(posicionActual(x)), sgd(posActual(x)) == NoCensado }
+\aux{sinCensar}{s: Sistema, sis: Sistema, d: Drone}{\bool}{(\exists \selector{x} enjambreDrones(s)) id(x) == id(d)  \land \newline contenido(campo(s), prm(posicionActual(x)), sgd(posicionActual(x))) == Cultivo \land \newline estadoCultivo(sis), prm(posicionActual(x)), sgd(posActual(x)) == NoCensado }

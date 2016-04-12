@@ -1,29 +1,37 @@
+% Problema 13
 \begin{problema}{crearS}{c: Campo, ds: [Drone]}{Sistema}
 \end{problema}
 
+% Problema 14
 \begin{problema}{campoS}{s: Sistema}{Campo}
 \asegura{\res == campo(s)}
 \end{problema}
 
+% Problema 15
 \begin{problema}{estadoDelCultivoS}{s: Sistema, i, j: \ent}{EstadoCultivo}
 \requiere{enRango(dimensiones(campo(s)), i, j)}
 \asegura{\res == estadoDelCultivo(s, i, j)}
 \end{problema}
 
+% Problema 16
 \begin{problema}{enjambreDronesS}{s: Sistema}{[Drone]}
 \asegura{mismos(\res, enjambreDrones(s))}
 \end{problema}
 
+% Problema 17
 \begin{problema}{crecerS}{s: Sistema}{}
 \end{problema}
 
+% Problema 18
 \begin{problema}{seVinoLaMalezaS}{s: Sistema, ps: [(\ent, \ent)]}{}
 \end{problema}
 
+% Problema 19
 \begin{problema}{seExpandePlagaS}{s: Sistema}{}
 
 \end{problema}
 
+% Problema 20
 \begin{problema}{despegarS}{s: Sistema, d: Drone}{}
 \requiere{\neg enVuelo(d)}
 \requiere{bateria(d) == 100}
@@ -38,16 +46,21 @@
 \asegura{noCambiaEstadoDeCultivos(s, pre(s))}
 \end{problema}
 
+% Problema 21
 \begin{problema}{listoParaCosecharS}{s: Sistema}{\bool}
 \asegura{\res == (\hspace{1mm} porcentajeListas(s) \geq 0.90 \hspace{1mm})}
 \end{problema}
 
+% Problema 22
 \begin{problema}{aterrizarYCargarBateriaS}{s: Sistema, b: \ent}{}
 \end{problema}
 
+% Problema 23
 \begin{problema}{fertilizarPorFilas}{s: Sistema}{}
 \end{problema}
 
+% Problema 24
+% COMPLETAR!
 \begin{problema}{volarYSensarS}{s: Sistema, d: Drone}{}
 \requiere {d \in enjambreDrones (s)}
 \requiere {bateria (d) \geq 1}

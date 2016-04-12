@@ -88,8 +88,30 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 
 
 % Auxiliares problema 23
-\aux{cantidadDeMovimientos}{d: Drone, s : Sistema}{\ent}{minimoTres(cantidadFertilizante(d), bateria(d), distanciaHastaObstaculo(d, s))}
+\aux{cantidadDeMovimientos}{d: Drone, s : Sistema}{\ent}{minimoTres(cantidadFertilizante(d), bateria(d),\newline \hspace{1mm}distanciaHastaObstaculoOMargen(d, s))}
 
 \aux{minimoTres}{a,b,c : \ent}{\ent}{minimoDos(minimoDos(a, b), c)}
 
 \aux{minimoDos}{a,b : \ent}{\ent}{\IfThenElse{a \leq b}{a}{b}}
+
+\aux{cantidadFertilizante}{d : Drone}{\ent}{|[x\hspace{1mm}|\hspace{1mm} \selector{x}{productosDisponibles(d)}, x == Fertilizante]|}
+
+\aux{distanciaHastaObstaculoOMargen}{d : Drone, s : Sistema}{\int}{if(obstaculoEnFilaAIzquierda(d, s))\newline
+then(prm(obstaculoDelante[|obstaculoDelante|-1]) - prm(posicionActual(d)))\newline
+else(prm(posicionActual(d)-0))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

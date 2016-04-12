@@ -20,8 +20,10 @@
 \end{problema}
 
 % Problema 15
+% MODIFICACION: Necesitabamos perdir que la posicion sea cultivo. Si no lo era, estado de cultivo explotaba.
 \begin{problema}{estadoDelCultivoS}{s: Sistema, i, j: \ent}{EstadoCultivo}
 \requiere{enRango(dimensiones(campo(s)), i, j)}
+\requiere{contenido(campo(s), i ,j) == Cultivo}
 \asegura{\res == estadoDelCultivo(s, i, j)}
 \end{problema}
 

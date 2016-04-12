@@ -114,7 +114,7 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \hspace{1mm} else(prm(posicionActual(d) - 0))}
 \vspace{3mm}
 
-%aux ultimo elemento
+%\aux{ultimo elemento} para que sea legible lo anterior
 
 \aux{obstaculoEnFilaAIzquierda}{d : Drone, s : Sistema}{Bool}{(\exists \selector{i}{\rangoca{0}{prm(posicionActual(d))}})\newline
 \hspace{1mm} contenido(campo(s), i, sgd(posicionActual(d))) \neq Cultivo}
@@ -125,13 +125,27 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \vspace{3mm}
 
 
-\aux{posicionAfter}{d : Drone}{(\ent , \ent)}{(prm(posicionActual(d))) - CantidadDeMovimientos(d), sgd(posicionActual(d))}
+\aux{posicionAfter}{d : Drone}{(\ent , \ent)}{(prm(posicionActual(d))) - cantidadDeMovimientos(d), sgd(posicionActual(d))}
 \vspace{3mm}
 
 % No hay error en el rango.
 \aux{vuelosAfter}{viejo, nuevo : Drone}{[(\ent , \ent)]}{vuelosRealizados(viejo) ++ [(i,sgd(posicionActual(nuevo))) \hspace{1mm}| \newline
 \hspace{1mm} \selector{i}{\rangoac{prm(posicionActual(viejo))}{prm(posicionActual(nuevo))}}] }
 \vspace{3mm}
+
+\aux{bateriaAfter}{d : Drone}{\ent}{bateria(d)- cantidadDeMovimientos(d)}
+\vspace{1mm}
+
+\aux{productosAfter}{d : Drone}{[Producto]}{[]}
+
+\aux{anchoRecorrido}{posIzq, posDer: (\ent , \ent)}{[(\ent , \ent)]}{[i \hspace{1mm}|\hspace{1mm} \selector{i}{\rangoca{prm(posIzq)}{prm(posDer)}}]}
+\vspace{3mm}
+
+\aux{estadoRecienSembradoOEnCrecimiento}{s: Sistema, i, j : \ent}{Bool}{(estadoCultivo(s, i ,j) == RecienSembrado) \lor (estadoCultivo(s, i, j) == EnCrecimiento)}
+\vspace{3mm}
+
+\aux{filasSinDronesVolando}{s : Sistema}{[\ent]}{[j \hspace{1mm}|\hspace{1mm} \selector{j}{\rangoca{0}{dameLargo(campo(s))}}, \newline
+\hspace{1mm}\neg(\exists d \in enjambreDrones(s))enVuelo(d) \hspace{1mm}\land \hspace{1mm}sgn(posicionActual(d)) == j] }
 
 
 %aux del 24

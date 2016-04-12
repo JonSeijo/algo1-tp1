@@ -86,3 +86,8 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 
 \aux{porcentajeCultivosListos}{s : Sistema}{ Float }{ |dameCultivosListos(s)| \hspace{1mm} / \hspace{1mm} |dameCultivos(s)| }
 
+
+\aux{maximoUnDroneEnVuelo}{s : Sistema}{Bool}{sinRepetidos(posicionesEnY(dronesVolando(s)))}
+
+
+\aux{dronesVolando}{s : Sistema}{[Drone]}{[\hspace{1mm}d\hspace{1mm}|\hspace{1mm} \selector{d}{enjambreDrones(s), \hspace{1mm} enVuelo(d)}]}

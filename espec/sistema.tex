@@ -163,5 +163,9 @@ estadoDelCultivo(pre(s), i, j) == estadoDelCultivo(s, i, j)}}
 \modifica{s}
 \asegura {campo (s) == campo (pre(s))}
 \asegura {|enjambreDrones (pre(s))| == |enjambreDrones(s)|}
-\asegura {(\forall \selector{x}{enjambreDrones (pre(s))} x \neq d )\hspace{1mm} x \in enajmbreDrones (s)}
+\asegura {(\forall \selector{x}{enjambreDrones (pre(s))}, \hspace{1mm} x \neq d )\hspace{3mm} x \in enajmbreDrones (s)}
+\asegura {(\exists \selector{x} {enjambreDrones(pre(s))})\hspace{1mm} \hspace{1mm} id(x) == id(d) \newline
+\land \hspace{1mm} enVuelo(x)\hspace{1mm} \newline
+\land \hspace{1mm} posicionActual(x) \in adyacentesValidas(posicionActual(d)) \newline
+\land \hspace{1mm} vuelosRealizados(x) == vuelosRealizados(d)\hspace{1mm} ++ \hspace{1mm} [posicionActual(x)]}
 \end{problema}

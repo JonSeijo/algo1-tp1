@@ -34,6 +34,15 @@
 
 % Problema 17
 \begin{problema}{crecerS}{s: Sistema}{}
+\modifica{s}
+\asegura{campo(pre(s)) == campo(s)}
+\asegura{mismos(enjambreDrones(pre(s)), enjambreDrones(s))}
+
+\asegura{(\forall\selector{i}{\rangoca{0}{dameAncho(campo(s))}},\selector{j}{\rangoca{0}{dameLargo(campo(s))}}, contenido(campo(pre(s)), i, j) == Cultivo)\newline
+((estadoCultivo(pre(s),i,j) == RecienSembrado) \implica (estadoCultivo(s, i, j) == EnCrecimiento))\newline
+\land ((estadoCultivo(pre(s),i,j) == EnCrecimiento) \implica (estadoCultivo(s, i, j) == ListoParaCosechar))\newline
+\land ((estadoCultivo(pre(s), i, j) \neq RecienSembrado\hspace{1mm} \land \hspace{1mm} estadoCultivo(pre(s), i, j)  \neq EnCrecimiento) \newline \implica estadoCultivo(pre(s), i, j) == estadoCultivo(s, i, j))}
+
 \end{problema}
 
 % Problema 18

@@ -2,7 +2,7 @@
 \begin{problema}{crearS}{c: Campo, ds: [Drone]}{Sistema}
 \requiere{sinRepetidos(listaIds(ds))}
 \asegura {c == campo(res)}
-\asegura[todoCultivoEstaNoCensado]{(\forall \selector{i}{\rangoca{0}{dameAncho(c)}} \hspace{1mm} \selector{j}{\rangoca{0}{dameLargo(c)}})\hspace{1mm}((contenido(c, i, j) == Cultivo) \implica (estadoCultivo(\res, i, j) == NoCensado))  )}
+\asegura[todoCultivoEstaNoCensado]{(\forall \selector{i}{\rangoca{0}{dameAncho(c)}} \hspace{1mm} \selector{j}{\rangoca{0}{dameLargo(c)}})\hspace{1mm}((contenido(c, i, j) == Cultivo) \implica (estadoDelCultivo(\res, i, j) == NoCensado))  )}
 \asegura{|ds| == |enjambreDrones(res)|}
 \asegura{(\forall \selector{d}{ds}) \hspace{1mm} id(d) \in listaIds(enjambreDrones(res)) )}
 \asegura{(\forall \selector{x}{enjambreDrones(res)}) \hspace{1mm}bateria(x) == 100}
@@ -38,9 +38,9 @@
 \asegura{mismos(enjambreDrones(pre(s)), enjambreDrones(s))}
 
 \asegura{(\forall\selector{i}{\rangoca{0}{dameAncho(campo(s))}},\selector{j}{\rangoca{0}{dameLargo(campo(s))}}, contenido(campo(pre(s)), i, j) == Cultivo)\newline
-((estadoCultivo(pre(s),i,j) == RecienSembrado) \implica (estadoCultivo(s, i, j) == EnCrecimiento))\newline
-\land ((estadoCultivo(pre(s),i,j) == EnCrecimiento) \implica (estadoCultivo(s, i, j) == ListoParaCosechar))\newline
-\land ((estadoCultivo(pre(s), i, j) \neq RecienSembrado\hspace{1mm} \land \hspace{1mm} estadoCultivo(pre(s), i, j)  \neq EnCrecimiento) \newline \implica estadoCultivo(pre(s), i, j) == estadoCultivo(s, i, j))}
+((estadoDelCultivo(pre(s),i,j) == RecienSembrado) \implica (estadoDelCultivo(s, i, j) == EnCrecimiento))\newline
+\land ((estadoDelCultivo(pre(s),i,j) == EnCrecimiento) \implica (estadoDelCultivo(s, i, j) == ListoParaCosechar))\newline
+\land ((estadoDelCultivo(pre(s), i, j) \neq RecienSembrado\hspace{1mm} \land \hspace{1mm} estadoDelCultivo(pre(s), i, j)  \neq EnCrecimiento) \newline \implica estadoDelCultivo(pre(s), i, j) == estadoDelCultivo(s, i, j))}
 
 \end{problema}
 
@@ -55,7 +55,7 @@
 \asegura{mismos(enjambreDrones(pre(s)), enjambreDrones(s))}
 \asegura{(\forall \selector{p}{ps})\hspace{1mm} estadoDelCultivo(s, prm(p), sgd(p)) == ConMaleza}
 \asegura{(\forall\selector{i}{\rangoca{0}{dameAncho(campo(s))}},\selector{j}{\rangoca{0}{dameLargo(campo(s))}}, contenido(campo(pre(s)), i, j) == Cultivo, (i,j) \not\in ps) \newline
-estadoCultivo(pre(s), i ,j) == estadoDelCultivo(s, i, j)}
+estadoDelCultivo(pre(s), i ,j) == estadoDelCultivo(s, i, j)}
 
 \end{problema}
 

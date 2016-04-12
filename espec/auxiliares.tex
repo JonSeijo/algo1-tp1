@@ -67,7 +67,7 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \aux{dameCultivos}{s : Sistema}{[Parcela]}{ [\hspace{1mm} (i, j) \hspace{1mm} | \hspace{1mm} \selector{i}{\rangoca{0}{dameAncho(campo(s))}} \hspace{2mm} \selector{j}{\rangoca{0}{dameLargo(campo(s))}},\newline contenido(campo(s), i, j) == Cultivo ]}
 
 
-\aux{dameCultivosListos}{s : Sistema}{[Parcela]}{[\hspace{1mm} c \hspace{1mm} | \hspace{1mm} \selector{c}{dameCultivos(s)} , estadoCultivo(s prm(c), sgd(c)) == ListoParaCosechar \hspace{1mm}]}
+\aux{dameCultivosListos}{s : Sistema}{[Parcela]}{[\hspace{1mm} c \hspace{1mm} | \hspace{1mm} \selector{c}{dameCultivos(s)} , estadoDelCultivo(s, prm(c), sgd(c)) == ListoParaCosechar \hspace{1mm}]}
 
 
 \aux{porcentajeListas}{s : Sistema}{ Float }{ |dameCultivosListos(s)| \hspace{1mm} / \hspace{1mm} |dameCultivos(s)| }

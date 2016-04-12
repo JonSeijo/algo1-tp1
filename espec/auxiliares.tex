@@ -17,11 +17,11 @@
 
 \aux{listaPrimerosElementos}{xs : [(T, S)]}{[T]}{[prm(v) \hspace{3mm} | \hspace{3mm} \selector{v}{xs}]}
 
-\aux{listaSegundosElementos}{xs : [(T, S)]}{[T]}{[sgd(v) \hspace{3mm} | \hspace{3mm} \selector{v}{xs}]}
+\aux{listaSegundosElementos}{xs : [(T, S)]}{[S]}{[sgd(v) \hspace{3mm} | \hspace{3mm} \selector{v}{xs}]}
 
 \aux{posicionesEnX}{xs : [(T, S)]}{[T]}{listaPrimerosElementos(xs)}
 
-\aux{posicionesEnY}{xs : [(T, S)]}{[T]}{listaSegundosElementos(xs)}
+\aux{posicionesEnY}{xs : [(T, S)]}{[S]}{listaSegundosElementos(xs)}
 
 \aux{estaOrdenada}{xs : [\ent]}{Bool}{siempreCreciente(xs) \lor siempreDecreciente(xs)}
 
@@ -34,7 +34,7 @@
 % Problema 12
 
 \aux{crucesTotales}{xss : [[(\ent, \ent)]]}{[((\ent, \ent), \ent)]}{
-concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \selector{x}{xs}]\hspace{1mm})}
+concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \selector{xs}{xss}]\hspace{1mm})}
 
 \aux{crucesEnMomento}{xs : [(\ent, \ent)]}{[((\ent, \ent), \ent)]}{
 [(x, cuenta(x, xs))\hspace{2mm}|\hspace{2mm}\selector{x}{listaSinRepeticiones(xs)},cuenta(x, xs) \geq 2]}
@@ -86,8 +86,3 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 
 \aux{porcentajeCultivosListos}{s : Sistema}{ Float }{ |dameCultivosListos(s)| \hspace{1mm} / \hspace{1mm} |dameCultivos(s)| }
 
-
-\aux{maximoUnDroneEnVuelo}{s : Sistema}{Bool}{sinRepetidos(posicionesEnY(dronesVolando(s)))}
-
-
-\aux{dronesVolando}{s : Sistema}{[Drone]}{[\hspace{1mm}d\hspace{1mm}|\hspace{1mm} \selector{d}{enjambreDrones(s), \hspace{1mm} enVuelo(d)}]}

@@ -164,3 +164,8 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \aux{quierePlaguizarBajoConsumo}{s : Sistema, x, d : Drone}{Bool}{siLlegoAPlaga(x, s) \newline \land tieneAlgunPlaguicidaBajoConsumo(d) \land 6 \leq  bateria(d) \leq 10}
 
 
+\aux{llegoAMaleza}{x: Drone, s: Sistema}{\bool}{\IfThenElse {((contenido(campo(s)),
+prm(posicionActual(x)), sgd(posicionActual(x)))\newline == Cultivo)}{(estadoCultivo(s, prm(posicionActual(x)), sgd(posicionActual(x))) == conMaleza)}{\False}}
+
+\aux{llegoAPlaga}{x: Drone, s: Sistema}{\bool}{\IfThenElse {((contenido(campo(s)),
+prm(posicionActual(x)), sgd(posicionActual(x)))\newline == Cultivo)}{(estadoCultivo(s, prm(posicionActual(x)), sgd(posicionActual(x))) == ConPlaga)}{\False}}

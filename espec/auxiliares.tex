@@ -52,14 +52,22 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \subsection{Sistema}
 % los aux del tipo sistema
 
-%\aux{anchoValido}{s : Sistema}{[i\hspace{1mm}|\hspace{1mm} \selector{i}{\rangoca{0}{dameAncho(campo(s))}}]}
+% NOTA: (Jonathan)
+% EN LOS PROBLEMAS ESTARIA BUENO REEMPLAZAR LOS "para todo i desde 0 hasta el ancho del campo del sistema"
+% CON "para todo i en anchoValido(s)"
 
-%\aux{largoValido}{s : Sistema}{[j\hspace{1mm}|\hspace{1mm} \selector{j}{\rangoca{0}{dameLargo(campo(s))}}]}
+\aux{anchoValido}{s : Sistema}{[\ent]}{[i\hspace{1mm}|\hspace{1mm} \selector{i}{\rangoca{0}{dameAncho(campo(s))}}]}
+
+\aux{largoValido}{s : Sistema}{[\ent]}{[j\hspace{1mm}|\hspace{1mm} \selector{j}{\rangoca{0}{dameLargo(campo(s))}}]}
 
 \aux{listaIds}{ds : [Drone]}{[\ent]}{[id(d)\hspace{1mm}|\hspace{1mm}\selector{d}{ds}]}
 
 \aux{recibePlaga}{s: Sistema}{[(\ent, \ent)]}{concat[adyacentesValidasCultivos(s, i, j)\hspace{1mm}|\hspace{1mm} \selector{i}{anchoValido(s)}, \newline
 \selector{j}{largoValido(s)}, contenido(campo(s)) == Cultivo, \hspace{1mm}estadoDelCultivo(s,i,j) == ConPlaga)]}
+
+\aux{adyacentesValidasCultivos}{s : Sistema, i,j : \ent}{[(\ent, \ent)]}{[v\hspace{1mm}|\hspace{1mm}\selector{v}{adyacentes(i,j)}, enRango(dimensiones(campo(s)), pmr(v), sgd(v)), contenido(campo(s), pmr(v), sgd(v)) == Cultivo]}
+
+\aux{adyacentes}{(i,j : \ent)}{[(\ent, \ent)]}{[(i-1,j),(i+1,j),(i,j-1),(i,j+1)]}
 
 \aux{noCambiaEstadoDeCultivo}{n, v : Sistema}{Bool}{\forall \selector{i}{\rangoca{0}{dameAncho(v)}}, \forall \selector{j}{\rangoca{0}{dameLargo(v)}} \newline 
 \hspace{10cm} contenido(campo(n, i, j)) == Cultivo \newline \hspace{10cm} estadoDelCultivo(v, i, j) == estadoDelCultivo(n, i, j)}

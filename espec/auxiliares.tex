@@ -59,11 +59,9 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \aux{anchoValido}{s : Sistema}{[\ent]}{[i\hspace{1mm}|\hspace{1mm} \selector{i}{\rangoca{0}{dameAncho(campo(s))}}]}
 
 \aux{largoValido}{s : Sistema}{[\ent]}{[j\hspace{1mm}|\hspace{1mm} \selector{j}{\rangoca{0}{dameLargo(campo(s))}}]}
-
 \vspace{3mm}
 
 \aux{listaIds}{ds : [Drone]}{[\ent]}{[id(d)\hspace{1mm}|\hspace{1mm}\selector{d}{ds}]}
-
 \vspace{3mm}
 
 \aux{recibePlaga}{s: Sistema}{[(\ent, \ent)]}{concat[adyacentesValidasCultivos(s, i, j)\hspace{1mm}|\hspace{1mm} \selector{i}{anchoValido(s)}, \newline
@@ -112,7 +110,7 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 
 
 \aux{distanciaHastaObstaculoOMargen}{d : Drone, s : Sistema}{\ent}{if(obstaculoEnFilaAIzquierda(d, s))\newline
-\hspace{1mm} then(prm(obstaculoDelante(d, s)[|obstaculoDelante|-1]) - prm(posicionActual(d)))\newline
+\hspace{1mm} then(prm(obstaculosDelante(d, s)[|obstaculosDelante|-1]) - prm(posicionActual(d)))\newline
 \hspace{1mm} else(prm(posicionActual(d) - 0))}
 
 \vspace{3mm}
@@ -132,5 +130,15 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \vspace{3mm}
 
 %aux del 24
-\aux{sinCensar}{s: Sistema, sis: Sistema, d: Drone}{\bool}{(\exists \selector{x} enjambreDrones(s)) id(x) == id(d)  \land \newline contenido(campo(s), prm(posicionActual(x)), sgd(posicionActual(x))) == Cultivo \land \newline estadoCultivo(sis), prm(posicionActual(x)), sgd(posActual(x)) == NoCensado }
 
+\aux{sinCensar}{s: Sistema, sis: Sistema, d: Drone}{\bool}{(\exists \selector{x} enjambreDrones(s))\hspace{1mm} id(x) == id(d) \newline
+\land contenido(campo(s), prm(posicionActual(x)), sgd(posicionActual(x))) == Cultivo \newline
+\land estadoCultivo(sis), prm(posicionActual(x)), sgd(posActual(x)) == NoCensado }
+
+
+\aux{tieneAlgunHerbicida}{x: Drone}{\bool}{(\exists \selector{p} productosDisponibles(x))\hspace{1mm} p == Herbicida \lor \newline p == HerbicidaLargoAlcance}
+
+\aux{tieneAlgunPlaguicida}{x: Drone}{\bool}{(\exists \selector{p} productosDisponibles(x))\hspace{1mm} p == Plaguicida \lor \newline p == PlaguicidaBajoConsumo}
+
+\aux{tienePlaguicidaBajoConsumo}{x: Drone}{\bool}{(\exists \selector{p} productosDisponibles(x)) \hspace{1mm}p == PlaguicidaBajoConsumo}
+%>>>>>>> bebaffbeee2705a801e37e1b838263ad5f5a7350

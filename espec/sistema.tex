@@ -84,7 +84,12 @@ estadoDelCultivo(pre(s), i ,j) == estadoDelCultivo(s, i, j)}
 \asegura[mismoCampo]{campo(pre(s)) == campo(s)}
 \asegura[igualCantidaDeDrones]{|enjabreDrones(pre(s))| == |enjambreDrones(s)|}
 \asegura[restoDronesIgual]{(\forall \selector{x}{enjambreDrones(pre(s))},\hspace{1mm}x \neq d)\hspace{3mm} x \in enajmbreDrones(s)}
-\asegura[unDroneCambiado]{( \exists \selector{x}{enjambreDrones(s)})\newline \hspace{16cm} id(x) == id(d)\newline \hspace{16cm}\land bateria(x) == bateria(d) - 1 \newline \hspace{16cm} \land estaEnVuelo(x) \newline \hspace{16cm} \land posicionActual(x) \in adyacentesValidosGranero(s)\newline \hspace{16cm} \land vueloRealizado(x) == [posicionActual(x)] \newline \hspace{16cm} \land mismos(productosDisponibles(x), productosDisponibles(d))}
+\asegura[unDroneCambiado]{( \exists \selector{x}{enjambreDrones(s)})\newline
+\hspace{1cm} id(x) == id(d)\newline
+\hspace{1cm}\land bateria(x) == bateria(d) - 1 \newline 
+\hspace{1cm}\land estaEnVuelo(x) \newline \hspace{16cm} \land posicionActual(x) \in adyacentesValidosGranero(s)\newline 
+\hspace{1cm} \land vueloRealizado(x) == [posicionActual(x)] \newline 
+\hspace{1cm} \land mismos(productosDisponibles(x), productosDisponibles(d))}
 \asegura{noCambiaEstadoDeCultivos(s, pre(s))}
 \end{problema}
 
@@ -95,7 +100,6 @@ estadoDelCultivo(pre(s), i ,j) == estadoDelCultivo(s, i, j)}
 
 % Problema 22
 \begin{problema}{aterrizarYCargarBateriaS}{s: Sistema, b: \ent}{}
-% NOTA(Jonathan)LO ESTOY COPIANDO NO ESCRIBAN ACA ASI NO COLISIONAMOS
 % ¿Quiza puede recibir un entero mayor a 100?
 \requiere{0 \leq b \leq 100}
 
@@ -117,9 +121,38 @@ id(d) == id(x)\newline
 
 \end{problema}
 
+\newpage
+
 % Problema 23
 \begin{problema}{fertilizarPorFilas}{s: Sistema}{}
-% NOTA(Jonathan)LO ESTOY COPIANDO NO ESCRIBAN ACA ASI NO COLISIONAMOS
+% NOTA(Jonathan)ME FALTA COPIAR TODAS LAS AUXILIARES
+\requiere{maximoUnDroneEnVueloPosFila(s)}
+
+\modifica{s}
+
+\asegura{campo(pre(s)) == campo(s)}
+\asegura{|enjambreDrones(pre(s))| == |enjambreDrones(s)|}
+
+\asegura{(\forall \selector{x}{enjambreDrones(pre(s))}, enVuelo(s)) (\exists \selector{d}{enjambreDrones(s)})\newline
+id(x) == id(d)\newline
+\land \hspace{1mm} posicionActual(d) == posicionAfter(x)\newline
+\land \hspace{1mm} vuelosRealizados(d) == vuelosAfter(x)\newline
+\land \hspace{1mm} bateria(d) == bateriaAfter(x)\newline
+\land \hspace{1mm} mismos(productosDisponibles(d), productosAfter(x))\newline
+\land \hspace{1mm} enVuelo(d)\newline
+\land \hspace{1mm} (\forall \selector{i}{anchoRecorrido(posicionAfter(x), posicionActual(x))},\newline
+\hspace{2cm} estadoRecienSembradoOEnCrecimiento(campo(pre(s)), i, sgd(posicionActul(x))) \newline
+\hspace{2cm} estadoDelCultivo(campo(s), i, sgd(posicionActual(x)) == ListoParaCosechar \newline
+\land \hspace{1mm} (\forall \selector{i}{anchoRecorrido(posicionAfter(x), posicionActual(x))},\newline
+\hspace{2cm} estadoRecienSembradoOEnCrecimiento(campo(pre(s)), i, sgd(posicionActul(x))) \newline
+\hspace{2cm}estadoDelCultivo(campo(pre(s)), i, sgd(posicionActual(x))\newline
+\hspace{1mm} == estadoDelCultivo(campo(s), i, sgd(posicionActual(x))}
+
+
+\asegura[filasSinDronesQuedanIgual]{(\forall \selector{i}{\rangoca{0}{dameAncho(campo(s))}, \selector{j}{filasSinDrones(pre(s))},\newline
+contenido(campo(pre(s)),i,j) == Cultivo) \newline
+estadoDelCultivo(pre(s), i, j) == estadoDelCultivo(s, i, j)}}
+
 \end{problema}
 
 % Problema 24

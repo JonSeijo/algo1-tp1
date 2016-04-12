@@ -152,6 +152,8 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \aux{posicionesHerbizar}{p: Producto, pos: (\ent,\ent), s: Sistema}{[(\ent,\ent)]}{\IfThenElse {(p == Herbicida)}{([pos])}\newline{adyacentesValidasAHerbizar(pos,s)}}
 
 \aux{adyacentesValidasAHerbizar}{pos: (\ent , \ent ), s: Sistema}{[(\ent , \ent)]}{[pos] ++ [v\hspace{1mm}|\hspace{1mm} \selector{v} adyacentes(prm(pos),sgd(pos)),\newline enRango(campo(s), prm(pos), sgd(pos)),  (contenido(campo(s), prm(pos), sgd(pos)) == cultivo), \newline (estadoCultivo(s, prm(pos), sgd(pos)) == ConMaleza)}
+%>>>>>>> bebaffbeee2705a801e37e1b838263ad5f5a7350
+
 
 \aux{quiereHerbizar}{s : Sistema, x, d : Drone}{Bool}{siLlegoAMaleza(x, s) \newline \land tieneAlgunHerbicida(d) \land bateria(d) \geq 6}
 
@@ -162,4 +164,3 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \aux{quierePlaguizarBajoConsumo}{s : Sistema, x, d : Drone}{Bool}{siLlegoAPlaga(x, s) \newline \land tieneAlgunPlaguicidaBajoConsumo(d) \land 6 \leq  bateria(d) \leq 10}
 
 
-%>>>>>>> bebaffbeee2705a801e37e1b838263ad5f5a7350

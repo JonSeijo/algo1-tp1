@@ -21,7 +21,7 @@
 
 \aux{posicionesEnX}{xs : [(T, S)]}{[T]}{listaPrimerosElementos(xs)}
 
-\aux{posicionesEnY}{xs : [(T, S)]}{[T]}{listaSegundosElementos(xs)}
+\aux{posicionesEnY}{xs : [(T, S)]}{[S]}{listaSegundosElementos(xs)}
 
 \aux{estaOrdenada}{xs : [\ent]}{Bool}{siempreCreciente(xs) \lor siempreDecreciente(xs)}
 
@@ -39,8 +39,6 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \aux{crucesEnMomento}{xs : [(\ent, \ent)]}{[((\ent, \ent), \ent)]}{
 [(x, cuenta(x, xs))\hspace{2mm}|\hspace{2mm}\selector{x}{listaSinRepeticiones(xs)},\newline
 cuenta(x, xs) \geq 2]}
-
-\aux{listaSinRepeticiones}{xs: [T]}{[T]}{[\hspace{2mm} xs[i]\hspace{3mm} |\hspace{3mm} \selector{i}{[0.. |xs|)}, xs[i] \notin xs[0..i-1] ]}
 
 \aux{posicionesPorMomento}{ds : [Drone]}{[[(\ent, \ent)]]}{[\hspace{2mm}listaVertical(d)[i]\hspace{3mm}|\hspace{3mm} \selector{i}{\rangoca{0}{|vueloRealizado(ds[0])|}}]}
 
@@ -69,7 +67,8 @@ cuenta(x, xs) \geq 2]}
 \selector{j}{largoValido(s)}, contenido(campo(s)) == Cultivo, \hspace{1mm}estadoDelCultivo(s,i,j) == ConPlaga)]}
 \vspace{3mm}
 
-\aux{adyacentesValidasCultivos}{s : Sistema, i,j : \ent}{[(\ent, \ent)]}{[v\hspace{1mm}|\hspace{1mm}\selector{v}{adyacentes(i,j)}, enRango(dimensiones(campo(s)), pmr(v), sgd(v)), contenido(campo(s), pmr(v), sgd(v)) == Cultivo]}
+\aux{adyacentesValidasCultivos}{s : Sistema, i,j : \ent}{[(\ent, \ent)]}{[v\hspace{1mm}|\hspace{1mm}\selector{v}{adyacentes(i,j)},\newline
+\hspace{1mm}enRango(dimensiones(campo(s)), pmr(v), sgd(v)), contenido(campo(s), pmr(v), sgd(v)) == Cultivo]}
 \vspace{3mm}
 
 \aux{adyacentes}{(i,j : \ent)}{[(\ent, \ent)]}{[(i-1,j),(i+1,j),(i,j-1),(i,j+1)]}

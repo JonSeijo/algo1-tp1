@@ -213,7 +213,7 @@ estadoDelCultivo(s,\hspace{1mm} i ,\hspace{1mm}j) == estadoDelCultivo(pre(s)),\h
 \land estadoDelCultivo(s, \hspace{1mm} prm(posicionActual(x)),\hspace{1mm} sgd(posicionActual(x))) == RecienSembrado  ) }
 
 
-\asegura[usaPlaguicidaBajoConsumoSiPuedeYNecesita]{(\exists \selector{x}{enjambreDrones(s)}, \hspace{1mm} id(x) == id(d) \newline
+\asegura[usaPlaguicidaBajoConsumoSiPuedeYNecesita]{(\exists \selector{x}{enjambreDrones(s)}) \hspace{1mm} id(x) == id(d) \newline
 \hspace{5mm} \land quierePlaguiazarBajoConsumo(pre(s), x, d)) \newline
 \hspace{3mm} \implica (|productosDisponible(x)| == |productosDisponibles(d)|-1) \newline
 \hspace{2cm} \land (\exists \selector{p}{productosDisponibles(d)}, PlaguicidaBajoConsumo == p\newline
@@ -221,6 +221,7 @@ estadoDelCultivo(s,\hspace{1mm} i ,\hspace{1mm}j) == estadoDelCultivo(pre(s)),\h
 \hspace{2cm} mismos(productosDisponibles(d), p : productosDisponibles(x)) \newline
 \hspace{3mm} \land bateria(x) == (bateria(d) - gastoBateria(p) - 1) \newline
 \land (\forall \selector{i}{anchoValido(s)}), \selector{j}{largoValido(s)}, (i, \hspace{1mm}j) \neq posicionActual(x), \newline
+contenido(campo(s), i, j == Cultivo)\newline
 estadoDelCultivo(s,\hspace{1mm} i ,\hspace{1mm}j) == estadoDelCultivo(pre(s)),\hspace{1mm}i,\hspace{1mm}j) \newline
 \land estadoDelCultivo(s, \hspace{1mm} prm(posicionActual(x)),\hspace{1mm} sgd(posicionActual(x))) == RecienSembrado)}
 
@@ -228,6 +229,7 @@ estadoDelCultivo(s,\hspace{1mm} i ,\hspace{1mm}j) == estadoDelCultivo(pre(s)),\h
 \asegura[dejaTodoIgualSiNoHaceNada]{(\forall \selector{x}{enjambreDrones(s)}, \hspace{1mm} id(x) == id(d),\newline
 \neg ( (quiereHerbizar(s, pre(s),x,d)) \lor(quierePlaguizar(s, pre(s),x,d))\newline
 \lor(quierePlaguizarBajoConsumo(s, pre(s),x,d)) \lor(sinCensar(s, pre(s),x)) )) \newline
-\implica bateria(x) == bateria(d) - 1 \newline \land mismos(productosDisponibles(x), productosCisponibles(d))}
+\implica (bateria(x) == bateria(d) - 1 \newline \land mismos(productosDisponibles(x), productosDisponibles(d))\newline
+\hspace{1mm} \land noCambiaEstadoDeCultivo(pre(s), s))}
 
 \end{problema}

@@ -37,7 +37,8 @@
 concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \selector{xs}{xss}]\hspace{1mm})}
 
 \aux{crucesEnMomento}{xs : [(\ent, \ent)]}{[((\ent, \ent), \ent)]}{
-[(x, cuenta(x, xs))\hspace{2mm}|\hspace{2mm}\selector{x}{listaSinRepeticiones(xs)},cuenta(x, xs) \geq 2]}
+[(x, cuenta(x, xs))\hspace{2mm}|\hspace{2mm}\selector{x}{listaSinRepeticiones(xs)},\newline
+cuenta(x, xs) \geq 2]}
 
 \aux{listaSinRepeticiones}{xs: [T]}{[T]}{[\hspace{2mm} xs[i]\hspace{3mm} |\hspace{3mm} \selector{i}{[0.. |xs|)}, xs[i] \notin xs[0..i-1] ]}
 
@@ -59,7 +60,7 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \aux{anchoValido}{s : Sistema}{[\ent]}{[i\hspace{1mm}|\hspace{1mm} \selector{i}{\rangoca{0}{dameAncho(campo(s))}}]}
 
 \aux{largoValido}{s : Sistema}{[\ent]}{[j\hspace{1mm}|\hspace{1mm} \selector{j}{\rangoca{0}{dameLargo(campo(s))}}]}
-\vspace{3mm}
+\vspace{2mm}
 
 \aux{listaIds}{ds : [Drone]}{[\ent]}{[id(d)\hspace{1mm}|\hspace{1mm}\selector{d}{ds}]}
 \vspace{3mm}
@@ -148,6 +149,7 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 
 \aux{filasSinDronesVolando}{s : Sistema}{[\ent]}{[j \hspace{1mm}|\hspace{1mm} \selector{j}{\rangoca{0}{dameLargo(campo(s))}}, \newline
 \hspace{1mm}\neg(\exists d \in enjambreDrones(s))enVuelo(d) \hspace{1mm}\land \hspace{1mm}sgn(posicionActual(d)) == j] }
+\vspace{3mm}
 
 
 %aux del 24
@@ -155,37 +157,49 @@ concat(\hspace{2mm}[\hspace{1mm}crucesEnMomento(xs)\hspace{3mm}|\hspace{3mm} \se
 \aux{sinCensar}{s: Sistema, sis: Sistema, d: Drone}{\bool}{(\exists \selector{x} enjambreDrones(s))\hspace{1mm} id(x) == id(d) \newline
 \land contenido(campo(s), prm(posicionActual(x)), sgd(posicionActual(x))) == Cultivo \newline
 \land estadoCultivo(sis), prm(posicionActual(x)), sgd(posActual(x)) == NoCensado }
+\vspace{3mm}
 
 
 \aux{tieneAlgunHerbicida}{x: Drone}{\bool}{(\exists \selector{p} productosDisponibles(x))\hspace{1mm} p == Herbicida \lor \newline p == HerbicidaLargoAlcance}
+\vspace{3mm}
 
 \aux{tieneAlgunPlaguicida}{x: Drone}{\bool}{(\exists \selector{p} productosDisponibles(x))\hspace{1mm} p == Plaguicida \lor \newline p == PlaguicidaBajoConsumo}
+\vspace{3mm}
 
 \aux{tienePlaguicidaBajoConsumo}{x: Drone}{\bool}{(\exists \selector{p} productosDisponibles(x)) \hspace{1mm}p == PlaguicidaBajoConsumo}
+\vspace{3mm}
 
 
 \aux{esHerbicida}{p: Producto}{\bool}{(p == Herbicida)\hspace{1mm} \lor \hspace{1mm} (p==HerbicidaLargoAlcance)}
 
 \aux{esPlaguicida}{p: Producto}{\bool}{(p == Plaguicida) \hspace{1mm} \lor \hspace{1mm} (p == PlaguicidaBajoConsumo)}
+\vspace{3mm}
 
 \aux{gastoBateria}{p: Producto}{\ent}{\IfThenElse {(p == Plaguicida)}{10}{5}}
+\vspace{3mm}
 
 \aux{posicionesHerbizar}{p: Producto, pos: (\ent,\ent), s: Sistema}{[(\ent,\ent)]}{\IfThenElse {(p == Herbicida)}{([pos])}\newline{adyacentesValidasAHerbizar(pos,s)}}
+\vspace{3mm}
 
 \aux{adyacentesValidasAHerbizar}{pos: (\ent , \ent ), s: Sistema}{[(\ent , \ent)]}{[pos] ++ [v\hspace{1mm}|\hspace{1mm} \selector{v} adyacentes(prm(pos),sgd(pos)),\newline enRango(campo(s), prm(pos), sgd(pos)),  (contenido(campo(s), prm(pos), sgd(pos)) == cultivo), \newline (estadoCultivo(s, prm(pos), sgd(pos)) == ConMaleza)}
+\vspace{3mm}
 
 
 \aux{quiereHerbizar}{s : Sistema, x, d : Drone}{Bool}{llegoAMaleza(x, s) \newline \land tieneAlgunHerbicida(d) \land bateria(d) \geq 6}
+\vspace{3mm}
 
 
 \aux{quierePlaguizar}{s : Sistema, x, d : Drone}{Bool}{llegoAPlaga(x, s) \newline \land tieneAlgunPlaguicida(d) \land bateria(d) \geq 11}
+\vspace{3mm}
 
 
 \aux{quierePlaguizarBajoConsumo}{s : Sistema, x, d : Drone}{Bool}{llegoAPlaga(x, s) \newline \land tieneAlgunPlaguicidaBajoConsumo(d) \land 6 \leq  bateria(d) \leq 10}
+\vspace{3mm}
 
 
 \aux{llegoAMaleza}{x: Drone, s: Sistema}{\bool}{\IfThenElse {((contenido(campo(s)),
 prm(posicionActual(x)), sgd(posicionActual(x)))\newline == Cultivo)}{(estadoCultivo(s, prm(posicionActual(x)), sgd(posicionActual(x))) == conMaleza)}{\False}}
+\vspace{3mm}
 
 \aux{llegoAPlaga}{x: Drone, s: Sistema}{\bool}{\IfThenElse {((contenido(campo(s)),
 prm(posicionActual(x)), sgd(posicionActual(x)))\newline == Cultivo)}{(estadoCultivo(s, prm(posicionActual(x)), sgd(posicionActual(x))) == ConPlaga)}{\False}}

@@ -133,13 +133,16 @@ id(d) == id(x)\newline
 \asegura{campo(pre(s)) == campo(s)}
 \asegura{|enjambreDrones(pre(s))| == |enjambreDrones(s)|}
 
-\asegura{(\forall \selector{x}{enjambreDrones(pre(s))}, enVuelo(s)) (\exists \selector{d}{enjambreDrones(s)})\newline
+\asegura[cambianDronesYCultivos]{(\forall \selector{x}{enjambreDrones(pre(s))}, enVuelo(s)) (\exists \selector{d}{enjambreDrones(s)})\newline
 id(x) == id(d)\newline
 \land \hspace{1mm} posicionActual(d) == posicionAfter(x)\newline
 \land \hspace{1mm} vuelosRealizados(d) == vuelosAfter(x)\newline
 \land \hspace{1mm} bateria(d) == bateriaAfter(x)\newline
-IMPORTANTE FALTO HACER PRODUCTOSAFTER() Y ME TUVE QUE IR
-\land \hspace{1mm} mismos(productosDisponibles(d), productosAfter(x))\newline
+\land \hspace{1mm} (\forall \selector{p}{productosDisponibles(d)}, p \neq Fertilizante)\newline
+\hspace{1mm} cuenta(p, productosDisponibles(d) == cuenta(p, productosDisponibles(x)))\newline
+\land \hspace{1mm} (\forall \selector{p}{productosDisponibles(d)}, p == Fertilizante)\newline
+\hspace{1mm} cuenta(p, productosDisponibles(d) == \newline
+\hspace{1mm} cuenta(p, productosDisponibles(x)) - cantidadDeMovimientos(x,pre(s)))\newline
 \land \hspace{1mm} enVuelo(d)\newline
 \land \hspace{1mm} (\forall \selector{i}{anchoRecorrido(posicionAfter(x), posicionActual(x))},\newline
 \hspace{2cm} estadoRecienSembradoOEnCrecimiento(pre(s), i, sgd(posicionActul(x))) \newline

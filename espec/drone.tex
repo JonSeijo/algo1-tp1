@@ -2,7 +2,7 @@
 \begin{problema}{crearD}{id: \ent, ps: [Producto]}{Drone}
 \asegura{id(\res) == id }
 \asegura[bateriaAlMaximo]{bateria(\res) == 100}
-\asegura{mismos(\res,\hspace{1mm} ps)}
+\asegura{mismos(productosDisponibles(\res),\hspace{1mm} ps)}
 \asegura{enVuelo(\res) == False}
 \end{problema}
 
